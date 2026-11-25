@@ -5,6 +5,7 @@ from .db import Base, engine
 from .routes_auth import router as auth_router
 from .routes_documents import router as documents_router
 from .routes_research import router as research_router
+from .routes_users import router as users_router
 from .settings import get_settings
 
 settings = get_settings()
@@ -21,6 +22,7 @@ app.add_middleware(CORSMiddleware, allow_origins=[item.strip() for item in setti
 app.include_router(auth_router)
 app.include_router(documents_router)
 app.include_router(research_router)
+app.include_router(users_router)
 
 @app.get('/health', tags=['system'])
 async def health() -> dict[str, str]:
